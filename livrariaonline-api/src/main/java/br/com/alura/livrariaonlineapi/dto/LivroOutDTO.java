@@ -9,6 +9,8 @@ import java.time.LocalDate;
 @Setter
 public class LivroOutDTO {
 
+
+    private Long id;
     private String titulo;
     private LocalDate dataLancamento;
     private Integer numeroPaginas;

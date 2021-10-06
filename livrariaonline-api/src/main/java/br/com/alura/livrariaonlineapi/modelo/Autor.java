@@ -3,6 +3,7 @@ package br.com.alura.livrariaonlineapi.modelo;
 
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
@@ -10,8 +11,13 @@ import java.time.LocalDate;
 @ToString(exclude = {"curriculo"})
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "autores")
 public class Autor {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private String email;
     private LocalDate dataNascimento;

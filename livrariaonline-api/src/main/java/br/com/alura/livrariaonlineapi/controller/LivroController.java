@@ -4,9 +4,14 @@ import br.com.alura.livrariaonlineapi.dto.LivroInDTO;
 import br.com.alura.livrariaonlineapi.dto.LivroOutDTO;
 import br.com.alura.livrariaonlineapi.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -17,14 +22,20 @@ public class LivroController {
     private LivroService livroService;
 
     @GetMapping
-    public List<LivroOutDTO> listar(){
-        return livroService.listar();
+    public Page<LivroOutDTO> listar(Pageable paginacao){
+        return livroService.listar(paginacao);
     }
 
     @PostMapping
-    public void cadastrar(@RequestBody @Valid LivroInDTO livroInDTO){
+    public ResponseEntity<LivroOutDTO> cadastrar(@RequestBody @Valid LivroInDTO livroInDTO,
+              UriComponentsBuilder uriBuilder){
 
-        livroService.cadastrar(livroInDTO);
+        LivroOutDTO livroOutDTO = livroService.cadastrar(livroInDTO);
+
+        URI uri = uriBuilder.path("/livros/{id}")
+                .buildAndExpand(livroOutDTO.getId())
+                .toUri();
+        return ResponseEntity.created(uri).body(livroOutDTO);
 
     }
 }
