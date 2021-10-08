@@ -20,6 +20,7 @@ public class Livro {
     private LocalDate dataLancamento;
     private Integer numeroPaginas;
 
+    @ManyToOne
     @JoinColumn(name = "autor_id")
     private Autor autor;
 

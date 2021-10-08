@@ -4,9 +4,14 @@ import br.com.alura.livrariaonlineapi.dto.AutorInDTO;
 import br.com.alura.livrariaonlineapi.dto.AutorOutDTO;
 import br.com.alura.livrariaonlineapi.service.AutorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -17,16 +22,22 @@ public class AutorController {
     private AutorService autorService;
 
     @GetMapping
-    public List<AutorOutDTO> listar(){
+    public Page<AutorOutDTO> listar(Pageable paginacao){
 
-        return autorService.listar();
+        return autorService.listar(paginacao);
 
     }
 
     @PostMapping
-    public void cadastrar(@RequestBody @Valid AutorInDTO autorInDTO){
+    public ResponseEntity<AutorOutDTO> cadastrar(@RequestBody @Valid AutorInDTO autorInDTO,
+              UriComponentsBuilder uriBuilder){
 
-        autorService.cadastrar(autorInDTO);
+        AutorOutDTO autorDTO = autorService.cadastrar(autorInDTO);
+
+        URI uri = uriBuilder.path("/autores/{id}")
+                .buildAndExpand(autorDTO.getId())
+                .toUri();
+        return ResponseEntity.created(uri).body(autorDTO);
 
     }
 
