@@ -29,6 +29,9 @@ public class LivroInDTO {
     @JsonProperty("quantidade_pagina_livro")
     private Integer numeroPaginas;
 
+    @JsonProperty("quantidade_livros")
+    private Integer quantidadeLivros;
+
     @JsonProperty("autor_livro")
     private AutorInDTO autor;
 
