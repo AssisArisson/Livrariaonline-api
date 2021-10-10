@@ -1,6 +1,5 @@
 package br.com.alura.livrariaonlineapi.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 

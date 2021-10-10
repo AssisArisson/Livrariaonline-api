@@ -32,7 +32,6 @@ public class LivroInDTO {
     @JsonProperty("autor_livro")
     private AutorInDTO autor;
 
-    //TODO verificar alteração para cadastrar o autor_id dentro do AutorInDTO
     @JsonProperty("autor_id")
     private Long autorId;
 

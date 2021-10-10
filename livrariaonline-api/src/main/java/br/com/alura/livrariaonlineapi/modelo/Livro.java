@@ -19,10 +19,11 @@ public class Livro {
     private String titulo;
     private LocalDate dataLancamento;
     private Integer numeroPaginas;
+    private Integer quantidadeLivros;
 
     @ManyToOne
     @JoinColumn(name = "autor_id")
     private Autor autor;
-    private Integer quantidadeLivros;
+
 
 }

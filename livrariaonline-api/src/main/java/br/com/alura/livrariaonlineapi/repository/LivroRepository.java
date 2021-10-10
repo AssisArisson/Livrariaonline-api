@@ -11,7 +11,7 @@ import java.util.List;
 public interface LivroRepository extends JpaRepository<Livro, Long> {
 
     @Query("select new br.com.alura.livrariaonlineapi.dto.ItemLivrosDTO("
-            + "a.autor, "
+            + "a.autor.nome, "
             + "sum(a.quantidadeLivros), "
             + "sum(a.quantidadeLivros) * 1.0 / (select sum(a2.quantidadeLivros) from Livro a2) * 1.0 ) "
             + "from Livro a "
