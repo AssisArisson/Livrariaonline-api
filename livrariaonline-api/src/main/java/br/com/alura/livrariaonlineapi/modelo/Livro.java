@@ -16,10 +16,10 @@ public class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String titulo;
     private LocalDate dataLancamento;
     private Integer numeroPaginas;
-    private Integer quantidadeLivros;
 
     @ManyToOne
     @JoinColumn(name = "autor_id")

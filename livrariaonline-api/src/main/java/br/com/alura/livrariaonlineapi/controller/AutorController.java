@@ -6,6 +6,7 @@ import br.com.alura.livrariaonlineapi.service.AutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -22,7 +23,7 @@ public class AutorController {
     private AutorService autorService;
 
     @GetMapping
-    public Page<AutorOutDTO> listar(Pageable paginacao){
+    public Page<AutorOutDTO> listar(@PageableDefault(size = 10) Pageable paginacao){
 
         return autorService.listar(paginacao);
 

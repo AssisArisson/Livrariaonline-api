@@ -2,7 +2,9 @@ package br.com.alura.livrariaonlineapi.service;
 
 import br.com.alura.livrariaonlineapi.dto.LivroInDTO;
 import br.com.alura.livrariaonlineapi.dto.LivroOutDTO;
+import br.com.alura.livrariaonlineapi.modelo.Autor;
 import br.com.alura.livrariaonlineapi.modelo.Livro;
+import br.com.alura.livrariaonlineapi.repository.AutorRepository;
 import br.com.alura.livrariaonlineapi.repository.LivroRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,10 @@ public class LivroService {
 
     @Autowired
     private LivroRepository livroRepository;
+
+    @Autowired
+    private AutorRepository autorRepository;
+
     private ModelMapper modelMapper = new ModelMapper();
 
     public Page<LivroOutDTO> listar(Pageable paginacao) {
@@ -34,7 +40,11 @@ public class LivroService {
     public LivroOutDTO cadastrar(LivroInDTO livroInDTO){
         Livro livro = modelMapper.map(livroInDTO, Livro.class);
 
+        Autor autor  = autorRepository.getById(livroInDTO.getAutorId());
+
         livro.setId(null);
+
+        livro.setAutor(autor);
 
         livroRepository.save(livro);
 
