@@ -14,21 +14,21 @@ import java.time.LocalDate;
 @Setter
 public class AutorInDTO {
 
-    @NotBlank(message = "Nome deve ser informado!")
+    @NotBlank
     @JsonProperty("nome")
     private String nome;
 
-    @NotBlank(message = "Email deve ser informado!")
+    @NotBlank
     @JsonProperty("email")
     private String email;
 
-    @NotNull(message = "Data de nascimento deve ser informada!")
-    @Past(message = "Data de nascimento deve ser menor a hoje!")
+    @NotNull
+    @Past
     @JsonProperty("data_nascimento")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
 
-    @NotBlank(message = "Mini currículo deve ser informado!")
+    @NotBlank
     @JsonProperty("curriculo")
     private String curriculo;
 

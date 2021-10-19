@@ -14,19 +14,19 @@ import java.time.LocalDate;
 @Setter
 public class LivroInDTO {
 
-    @Size(min = 10, max = 100, message = "Título deve ter entre 10 e 100 caracteres!")
-    @NotBlank(message = "Título deve ser informado!")
+    @Size(min = 10, max = 100)
+    @NotBlank
     @JsonProperty("titulo_livro")
     private String titulo;
 
-    @NotNull(message = "Data de lançamento deve ser informada!")
+    @NotNull
     @PastOrPresent
     @JsonFormat(pattern = "dd/MM/yyyy")
     @JsonProperty("data_lancamento_livro")
     private LocalDate dataLancamento;
 
-    @NotNull(message = "Número de páginas deve ser informado!")
-    @Min(value = 100, message = "Número de páginas deve ser >= 100!")
+    @NotNull
+    @Min(value = 100)
     @JsonProperty("quantidade_pagina_livro")
     private Integer numeroPaginas;
 
