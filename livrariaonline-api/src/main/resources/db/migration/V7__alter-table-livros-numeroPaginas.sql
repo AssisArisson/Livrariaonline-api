@@ -1,1 +1,0 @@
-ALTER TABLE livros RENAME COLUMN qtdpagina TO numero_paginas;

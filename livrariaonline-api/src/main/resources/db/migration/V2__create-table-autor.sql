@@ -1,8 +1,7 @@
 create table autores(
-    id bigint not null auto_increment,
-    nome varchar(100) not null,
-    email varchar (100) not null,
-    dtnascimento date not null,
-    curriculo varchar (300) not null,
-    primary key (id)
+    id bigint auto_increment PRIMARY KEY NOT NULL,
+    nome varchar(100) NOT NULL,
+    email varchar(100) NOT NULL,
+    data_nascimento date NOT NULL,
+    curriculo varchar(255) NOT NULL
 );
