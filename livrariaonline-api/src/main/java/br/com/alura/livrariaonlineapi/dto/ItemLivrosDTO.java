@@ -15,7 +15,7 @@ public class ItemLivrosDTO {
     private Long quantidadeLivros;
     private BigDecimal percentual;
 
-    public ItemLivrosDTO(String autor, Long quantidadeLivros, Long quantidadeTotal) {
+    public ItemLivrosDTO(String autor, Long quantidadeLivros, Double quantidadeTotal) {
         this.autor = autor;
         this.quantidadeLivros = quantidadeLivros;
         this.percentual = new BigDecimal(quantidadeLivros)
