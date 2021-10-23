@@ -1,5 +1,6 @@
 package br.com.alura.livrariaonlineapi.controller;
 
+import br.com.alura.livrariaonlineapi.dto.AtualizarLivroInDTO;
 import br.com.alura.livrariaonlineapi.dto.LivroInDTO;
 import br.com.alura.livrariaonlineapi.dto.LivroOutDTO;
 import br.com.alura.livrariaonlineapi.service.LivroService;
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/livros")
@@ -39,4 +40,29 @@ public class LivroController {
         return ResponseEntity.created(uri).body(livroOutDTO);
 
     }
+
+    @PutMapping
+    public ResponseEntity<LivroOutDTO> atualizar(@RequestBody @Valid AtualizarLivroInDTO atualizarLivroInDTO){
+
+        LivroOutDTO atualizado = livroService.atualizar(atualizarLivroInDTO);
+
+        return ResponseEntity.ok(atualizado);
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<LivroOutDTO> remover(@PathVariable @NotNull Long id){
+
+        livroService.remover(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<LivroOutDTO> detalhar(Long id){
+      LivroOutDTO livroOutDTO  = livroService.detalhar(id);
+
+      return ResponseEntity.ok(livroOutDTO);
+    }
+
 }

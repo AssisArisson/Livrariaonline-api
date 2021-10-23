@@ -60,7 +60,7 @@ class LivroControllerTest {
         autorRepository.save(autor);
 
         String json = "{\"titulo_livro\":\"Testes unitarios\", \"data_lancamento_livro\":\"05/10/2004\", \"quantidade_pagina_livro\":100, \"autor_id\":"+ autor.getId() + "}";
-        String jsonRetorno = "{\"titulo_livro\":\"Testes unitarios\", \"data_lancamento_livro\":\"05/10/2004\", \"quantidade_pagina_livro\":100 }";
+        String jsonRetorno = "{\"titulo\":\"Testes unitarios\", \"dataLancamento\":\"05/10/2004\", \"numeroPaginas\":100 }";
 
         mvc
                 .perform(post("/livros")

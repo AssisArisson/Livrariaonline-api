@@ -1,5 +1,6 @@
 package br.com.alura.livrariaonlineapi.service;
 
+import br.com.alura.livrariaonlineapi.dto.AtualizarLivroInDTO;
 import br.com.alura.livrariaonlineapi.dto.LivroInDTO;
 import br.com.alura.livrariaonlineapi.dto.LivroOutDTO;
 import br.com.alura.livrariaonlineapi.modelo.Autor;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,5 +52,32 @@ public class LivroService {
 
         return modelMapper.map(livro, LivroOutDTO.class);
 
+    }
+
+    @Transactional
+    public LivroOutDTO atualizar(AtualizarLivroInDTO atualizarLivroInDTO) {
+
+       Livro livro = livroRepository.getById(atualizarLivroInDTO.getId());
+
+       livro.atualizarInformacoes(
+               atualizarLivroInDTO.getTitulo(),
+               atualizarLivroInDTO.getDataLancamento(),
+               atualizarLivroInDTO.getNumeroPaginas());
+
+        return modelMapper.map(livro, LivroOutDTO.class);
+    }
+
+    @Transactional
+    public void remover(Long id) {
+        livroRepository.deleteById(id);
+    }
+
+    @Transactional
+    public LivroOutDTO detalhar(Long id) {
+
+       Livro livro =livroRepository.findById(id)
+               .orElseThrow(() -> new EntityNotFoundException());
+
+        return modelMapper.map(livro, LivroOutDTO.class);
     }
 }
