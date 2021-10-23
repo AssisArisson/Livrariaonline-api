@@ -30,4 +30,12 @@ public class Autor {
         this.dataNascimento = dataNascimento;
         this.curriculo = curriculo;
     }
+
+    public void atualizarAutor(String nome, String email, LocalDate dataNascimento, String curriculo) {
+        this.nome = nome;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+        this.curriculo = curriculo;
+    }
+
 }

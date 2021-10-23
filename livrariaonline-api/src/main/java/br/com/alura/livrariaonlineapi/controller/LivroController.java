@@ -59,7 +59,7 @@ public class LivroController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<LivroOutDTO> detalhar(Long id){
+    public ResponseEntity<LivroOutDTO> detalhar(@PathVariable @NotNull Long id){
       LivroOutDTO livroOutDTO  = livroService.detalhar(id);
 
       return ResponseEntity.ok(livroOutDTO);
