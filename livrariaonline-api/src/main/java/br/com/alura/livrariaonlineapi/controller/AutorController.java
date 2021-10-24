@@ -5,6 +5,8 @@ import br.com.alura.livrariaonlineapi.dto.AutorInDTO;
 import br.com.alura.livrariaonlineapi.dto.AutorOutDTO;
 import br.com.alura.livrariaonlineapi.dto.DetalhesAutorOutDTO;
 import br.com.alura.livrariaonlineapi.service.AutorService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,12 +23,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/autores")
+@Api(tags = "Autores")
 public class AutorController {
 
     @Autowired
     private AutorService autorService;
 
     @GetMapping
+    @ApiOperation("Listar Autores")
     public Page<AutorOutDTO> listar(@PageableDefault(size = 10) Pageable paginacao){
 
         return autorService.listar(paginacao);
@@ -34,6 +38,7 @@ public class AutorController {
     }
 
     @PostMapping
+    @ApiOperation("Cadastrar novo Autor")
     public ResponseEntity<AutorOutDTO> cadastrar(@RequestBody @Valid AutorInDTO autorInDTO,
               UriComponentsBuilder uriBuilder){
 
@@ -47,6 +52,7 @@ public class AutorController {
     }
 
     @PutMapping
+    @ApiOperation("Atualizar Autores")
     public ResponseEntity<AutorOutDTO> atualizar(@RequestBody @Valid AtualizarAutorInDTO atualizarAutorInDTO){
 
         AutorOutDTO atualizado = autorService.atualizar(atualizarAutorInDTO);
@@ -56,6 +62,7 @@ public class AutorController {
     }
 
     @DeleteMapping("{id}")
+    @ApiOperation("Remover Autores")
     public ResponseEntity<AutorOutDTO> remover(@PathVariable @NotNull Long id){
         autorService.remover(id);
 
@@ -63,6 +70,7 @@ public class AutorController {
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("Detalhar Autores")
     public ResponseEntity<DetalhesAutorOutDTO> detalhar(@PathVariable @NotNull Long id){
 
       DetalhesAutorOutDTO  detalhesAutorOutDTO = autorService.detalhar(id);

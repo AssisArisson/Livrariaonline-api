@@ -4,6 +4,8 @@ import br.com.alura.livrariaonlineapi.dto.AtualizarLivroInDTO;
 import br.com.alura.livrariaonlineapi.dto.LivroInDTO;
 import br.com.alura.livrariaonlineapi.dto.LivroOutDTO;
 import br.com.alura.livrariaonlineapi.service.LivroService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,17 +20,20 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/livros")
+@Api(tags = "Livros")
 public class LivroController {
 
     @Autowired
     private LivroService livroService;
 
     @GetMapping
+    @ApiOperation("Listar Livros")
     public Page<LivroOutDTO> listar(@PageableDefault(size =10) Pageable paginacao){
         return livroService.listar(paginacao);
     }
 
     @PostMapping
+    @ApiOperation("Cadastrar novo livro")
     public ResponseEntity<LivroOutDTO> cadastrar(@RequestBody @Valid LivroInDTO livroInDTO,
               UriComponentsBuilder uriBuilder){
 
@@ -42,6 +47,7 @@ public class LivroController {
     }
 
     @PutMapping
+    @ApiOperation("Atualizar Livros")
     public ResponseEntity<LivroOutDTO> atualizar(@RequestBody @Valid AtualizarLivroInDTO atualizarLivroInDTO){
 
         LivroOutDTO atualizado = livroService.atualizar(atualizarLivroInDTO);
@@ -51,6 +57,7 @@ public class LivroController {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation("Remover Livros")
     public ResponseEntity<LivroOutDTO> remover(@PathVariable @NotNull Long id){
 
         livroService.remover(id);
@@ -59,6 +66,7 @@ public class LivroController {
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("Detalhar Livros")
     public ResponseEntity<LivroOutDTO> detalhar(@PathVariable @NotNull Long id){
       LivroOutDTO livroOutDTO  = livroService.detalhar(id);
 
