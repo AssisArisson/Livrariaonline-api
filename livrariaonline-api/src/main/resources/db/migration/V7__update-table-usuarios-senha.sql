@@ -1,0 +1,1 @@
+update usuarios set senha = '$2a$10$V7sKoPRb3Vt6He8.lD6gHeXHADRDJU7yMabZb7HBoBxvT.6TOxDPu' where id = 1;

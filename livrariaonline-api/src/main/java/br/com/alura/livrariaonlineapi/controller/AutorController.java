@@ -7,6 +7,7 @@ import br.com.alura.livrariaonlineapi.dto.DetalhesAutorOutDTO;
 import br.com.alura.livrariaonlineapi.service.AutorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
