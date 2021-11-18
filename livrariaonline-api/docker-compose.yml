@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  livrariaonline_database:
+    image: mysql:8.0
+    restart: always
+    expose:
+      - 3306
+    env_file:
+      - livrariaonline_database.env
+
+  livraria_app:
+    image: alura/livrariaonline-api
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - livrariaonline_database
+    env_file:
+      - livrariaonline_app.env
