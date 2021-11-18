@@ -9,7 +9,7 @@ services:
     env_file:
       - livrariaonline_database.env
 
-  livraria_app:
+  livrariaonline_app:
     image: alura/livrariaonline-api
     restart: always
     ports:
