@@ -10,6 +10,6 @@ public class HomeController {
 
     @GetMapping
     public String home(){
-        return "Testando deploy auotmatizado";
+        return "Testando deploy automatizado";
     }
 }
